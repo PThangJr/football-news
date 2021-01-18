@@ -1,0 +1,136 @@
+.auth {
+    // display: none;
+    $wd: 500px;
+    $hg: 420px;
+    $pd-box: 50px;
+    position: relative;
+    @include mobile {
+        $pd-box: 20px;
+    }
+    %box {
+        min-width: 100%;
+        min-height: 100%;
+        padding: 20px $pd-box;
+        position: absolute;
+        backface-visibility: hidden;
+        background-color: $color-white;
+        border-radius: 5px;
+    }
+    .icon-close {
+        position: absolute;
+        right: 8px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        padding: 12px;
+        font-size: 1.8rem;
+        cursor: pointer;
+        border: 1px solid $color-grey-2;
+        @include flex(center);
+        border-radius: 3px;
+        color: black;
+    }
+    &__header {
+        @include flex(space-between);
+        font-size: 2.2rem;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        .btn {
+            &--login {
+                color: #009432;
+                font-weight: bold;
+            }
+            &--register {
+                font-weight: bold;
+
+                color: #ff361f;
+            }
+        }
+    }
+    &__form {
+        @include flex(flex-start);
+        flex-direction: column;
+        &-input {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 1.7rem;
+            margin: 10px 0;
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid black;
+        }
+    }
+    &__support {
+        @include flex(flex-end);
+        margin: 15px 0 25px 0;
+        span {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    }
+    &__btn {
+        @include flex(flex-end);
+        .btn {
+            &--back {
+                margin-right: 20px;
+            }
+            &--submit {
+                margin-right: 10px;
+            }
+            &--auth {
+                background: transparent;
+            }
+        }
+    }
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    &__overlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 5;
+    }
+    &__flex {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        @include flex(center);
+        z-index: 100;
+    }
+    &__box {
+        background: $color-white;
+        min-width: $wd;
+        min-height: $hg;
+        border-radius: 5px;
+        perspective: 1000;
+        transform-style: preserve-3d;
+        transition: transform 0.4s;
+        position: relative;
+        box-shadow: inset 0 0 20px $rgba-bsd;
+        @include mobile {
+            min-width: 90%;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            display: block;
+            top: -18px;
+            right: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 20px solid $color-white;
+        }
+        &-login {
+            @extend %box;
+        }
+        &-register {
+            @extend %box;
+            // display: none;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.sidebar {
+}
+.sidebar-right {
+    width: calc(100% - 240px);
+    height: 100vh;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    // @include mobile {
+    //     width: 100%;
+    // }
+    // @include tablet {
+    //     width: 100%;
+    // }
+    @include mobile-tablet {
+        width: 100%;
+    }
+}

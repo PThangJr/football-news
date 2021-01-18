@@ -1,0 +1,53 @@
+:root {
+    --color-page-background: #{$color-white};
+    --color-sidebar: #f5f6fa;
+    --color-text: #{$color-black};
+    --bg-modal-exit: rgba(36, 35, 35, 0.2);
+    --rgba-bsd: #{$rgba-bsd};
+}
+
+html,
+body {
+    font-size: 62.5%;
+    font-family: sans-serif;
+    @include mobile {
+        font-size: 55%;
+    }
+}
+
+html {
+    // box-sizing: inherit;
+    scroll-behavior: smooth;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.d-none {
+    display: none !important;
+}
+
+.wrapper {
+    font-size: 1.6rem;
+    background: var(--color-page-background);
+    color: var(--color-text);
+    &.dark-theme {
+        --color-page-background: #{$color-black};
+        --color-text: #{$color-white};
+        --color-sidebar: #{$color-black};
+        --bg-modal-exit: rgba(173, 173, 173, 0.5);
+        --rgba-bsd: #{$rgba-bsd-white};
+    }
+}

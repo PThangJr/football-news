@@ -1,0 +1,141 @@
+.trending {
+    // border: 1px solid;
+    width: 100%;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    @include mobile {
+        height: 300px;
+    }
+    %btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 5rem;
+        cursor: pointer;
+        color: $color-white;
+    }
+
+    &-controls {
+        padding: 10px 0;
+        width: 100%;
+        height: 15%;
+        // border: 1px ;
+        @include flex(center);
+    }
+
+    &-control {
+        // @include full-size();
+        box-shadow: inset 0 0 5px var(--rgba-bsd), 3px 5px 8px var(--rgba-bsd);
+
+        height: 90%;
+        width: 50px;
+        cursor: pointer;
+        margin: 0px 20px;
+        // transition: border 0.5s;
+
+        &:hover {
+            border: 3px solid rgb(51, 63, 238);
+            transform: scale(1.1);
+        }
+
+        &.trending-control--active {
+            border: 3px solid rgb(51, 63, 238);
+        }
+
+        &__img {
+            @include full-size();
+            object-fit: fill;
+            pointer-events: none;
+            border-radius: 5px;
+        }
+    }
+
+    &__prev {
+        @extend %btn;
+        left: 10px;
+    }
+
+    &__next {
+        @extend %btn;
+        right: 10px;
+    }
+
+    &-list {
+        // @include full-size();
+        width: 100%;
+        height: 85%;
+        position: relative;
+        box-shadow: inset 0 0 10px var(--rgba-bsd), 4px 8px 15px var(--rgba-bsd);
+        border-radius: 5px;
+        // overflow: hidden;
+        // transition: 0.5s;
+        // width: 500%;
+        // flex-wrap: wrap;
+    }
+
+    &-item {
+        @include full-size();
+        @include flex(flex-start);
+        display: none;
+        position: absolute;
+
+        &.trending-item--active {
+            display: block;
+        }
+
+        &.trending-next-show {
+            animation: trending-next-show 0.9s forwards;
+            display: block;
+        }
+
+        &.trending-prev-hide {
+            animation: trending-prev-hide 0.9s forwards;
+            display: block;
+        }
+
+        &.trending-prev-show {
+            animation: trending-prev-show 0.9s forwards;
+            display: block;
+        }
+
+        &.trending-next-hide {
+            animation: trending-next-hide 0.9s forwards;
+            display: block;
+        }
+    }
+
+    &-link {
+        display: flex;
+        @include full-size;
+        position: relative;
+    }
+
+    &-img {
+        @include full-size();
+        object-fit: fill;
+        display: block;
+    }
+
+    &__description {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        font-size: 2rem;
+        color: $color-white;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5);
+        padding: 30px;
+        width: 100%;
+    }
+    &__title {
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    &__content {
+    }
+}

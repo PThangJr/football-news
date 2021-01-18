@@ -1,0 +1,26 @@
+.btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: transparent;
+    min-width: 80px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: $color-white;
+    font-size: 1.8rem;
+    &:hover {
+        opacity: 0.8;
+    }
+    &--primary {
+        background: #dcdde1;
+    }
+    &--green {
+        background: #009432;
+    }
+    &--orange {
+        background: #ff361f;
+    }
+    &--full-wd {
+        width: 100%;
+    }
+}

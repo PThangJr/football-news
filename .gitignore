@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+rollback.html
 # production
 /build
 

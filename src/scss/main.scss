@@ -1,0 +1,28 @@
+@import "./responsive/responsive";
+
+@import "./general/variables.scss";
+@import "./general/mixins";
+@import "./general/animations";
+@import "./general/functions";
+
+@import "./base/base";
+
+@import "./ultils/buttons";
+@import "./ultils/transform";
+@import "./ultils/color";
+
+@import "./layouts/wrapper";
+@import "./layouts/sidebar";
+@import "./layouts/header";
+@import "./layouts/body";
+@import "./layouts/footer";
+
+@import "./components/side/sidebar";
+@import "./components/header/navbar";
+@import "./components/body/trending";
+@import "./components/body/result";
+@import "./components/body/card";
+@import "./components/scroll-home";
+@import "./components/auth/accounts";
+
+@import "./pages/news_detail_page/news-detail";
