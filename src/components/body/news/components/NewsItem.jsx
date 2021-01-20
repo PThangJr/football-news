@@ -5,10 +5,9 @@ import { NavLink, useRouteMatch } from 'react-router-dom';
 const NewsItem = (props) => {
   const { dataNew } = props;
   const match = useRouteMatch();
-  let { url, path } = match;
+  let { url } = match;
   if (url === '/') url = '';
-  // console.log(match)
-  const { _id, title, description, likes, views, topic, update_at, thumbnail } = dataNew;
+  const { _id, title, description, likes, views, thumbnail } = dataNew;
   const fallBackImage = (e) => {
     if (e) {
       e.target.src = 'http://placehold.it/285x125';

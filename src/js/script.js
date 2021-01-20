@@ -159,7 +159,7 @@ const carousel = () => {
       setTimeOutSlide();
     });
   }
-  const autoSlide = setInterval(() => (statusAutoSlide ? handleNextSlide() : false), autoSlideDuration * 1000);
+  setInterval(() => (statusAutoSlide ? handleNextSlide() : false), autoSlideDuration * 1000);
 };
 // carousel();
 const toggleSidebar = () => {

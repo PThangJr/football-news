@@ -37,6 +37,13 @@ const FormGroup = (props) => {
   );
 };
 
-FormGroup.propTypes = {};
+FormGroup.propTypes = {
+  type: PropTypes.string,
+  name: PropTypes.string,
+  placeholder: PropTypes.string,
+  cName: PropTypes.string,
+  status: PropTypes.string,
+  message: PropTypes.string,
+};
 
 export default FormGroup;

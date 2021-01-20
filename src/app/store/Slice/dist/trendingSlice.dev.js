@@ -53,7 +53,6 @@ var trendingSlice = (0, _toolkit.createSlice)({
     state.status = 'Server loading fail...';
   }), _extraReducers)
 });
-var actions = trendingSlice.actions,
-    reducer = trendingSlice.reducer;
+var reducer = trendingSlice.reducer;
 var _default = reducer;
 exports["default"] = _default;

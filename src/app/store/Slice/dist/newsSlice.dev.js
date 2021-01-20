@@ -80,7 +80,6 @@ var newsSlice = (0, _toolkit.createSlice)({
     state.isLoading = false;
   }), _extraReducers)
 });
-var actions = newsSlice.actions,
-    reducer = newsSlice.reducer;
+var reducer = newsSlice.reducer;
 var _default = reducer;
 exports["default"] = _default;

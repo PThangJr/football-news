@@ -7,7 +7,7 @@ const newsAPI = {
   },
   getNewById(newsId) {
     const url = `/${newsId}`;
-    return axiosClient.get(newsId);
+    return axiosClient.get(url);
   },
 
   getPremierLeague(params) {

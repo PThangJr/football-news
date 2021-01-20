@@ -18,7 +18,7 @@ var newsAPI = {
   },
   getNewById: function getNewById(newsId) {
     var url = "/".concat(newsId);
-    return _axiosClient["default"].get(newsId);
+    return _axiosClient["default"].get(url);
   },
   getPremierLeague: function getPremierLeague(params) {
     var url = '/premier-league';

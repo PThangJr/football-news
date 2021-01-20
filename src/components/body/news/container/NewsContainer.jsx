@@ -7,7 +7,7 @@ const NewsContainer = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchNews({ _limit: 28, _page: 1 }));
-  }, []);
+  }, [dispatch]);
   const dataNewsFetch = useSelector((state) => state.dataNews);
   const mapDataNews = () => {
     if (Array.isArray(dataNewsFetch.data)) {

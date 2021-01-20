@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { changeFormAuth } from '../../../app/store/Slice/formAuthSlice';
 import FormGroup from '../../form/form-group/FormGroup';
 
@@ -42,7 +41,7 @@ const RegisterForm = (props) => {
           <input className="checkbox" type="checkbox" />
           <span className="auth__rules-text">
             Tôi đồng ý với
-            <a className="auth__rules-link" href="#">
+            <a className="auth__rules-link" href="https://football-news-rule.com">
               Điều khoản dịch vụ
             </a>
             {/* <a className="auth__rules-link" href="#">

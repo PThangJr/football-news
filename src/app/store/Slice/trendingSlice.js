@@ -27,6 +27,6 @@ const trendingSlice = createSlice({
   },
 });
 
-const { actions, reducer } = trendingSlice;
+const { reducer } = trendingSlice;
 
 export default reducer;

@@ -53,7 +53,6 @@ var premierLeagueSlice = (0, _toolkit.createSlice)({
     return state;
   }), _extraReducers)
 });
-var actions = premierLeagueSlice.actions,
-    reducer = premierLeagueSlice.reducer;
+var reducer = premierLeagueSlice.reducer;
 var _default = reducer;
 exports["default"] = _default;

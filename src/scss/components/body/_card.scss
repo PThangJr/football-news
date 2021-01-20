@@ -1,17 +1,15 @@
 .news {
     padding-top: 85px;
     margin-top: -60px;
-    &__link {
-        text-transform: uppercase;
-        font-weight: bold;
-        color: $text-black;
-        display: inline-block;
-        padding: 5px 10px;
-        margin-bottom: 10px;
-    }
+
     &__heading {
         font-size: 2rem;
         display: inline-block;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: $text-black;
+        text-transform: uppercase;
     }
     .row {
         margin-top: -20px;
@@ -113,7 +111,7 @@
             }
             overflow: hidden;
         }
-        //Card__views
+        //Card__view
         &__views {
             color: var(--color-text);
             position: absolute;

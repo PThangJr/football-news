@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { changeFormAuth } from '../../../app/store/Slice/formAuthSlice';
 import FormGroup from '../../form/form-group/FormGroup';

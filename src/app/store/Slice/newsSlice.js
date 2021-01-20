@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import newsAPI from '../../../api/newsAPI';
 export const fetchNews = createAsyncThunk('news/getAll', async (payload, thunkAPI) => {
   const response = await newsAPI.getAll(payload);
@@ -40,6 +40,6 @@ const newsSlice = createSlice({
   },
 });
 
-const { actions, reducer } = newsSlice;
+const { reducer } = newsSlice;
 
 export default reducer;

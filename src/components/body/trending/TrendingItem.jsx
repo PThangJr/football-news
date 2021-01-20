@@ -3,9 +3,9 @@ import React from 'react';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 const TrendingItem = (props) => {
   const { trendingData } = props;
-  const { _id, thumbnail, title, description, topic } = trendingData;
+  const { _id, thumbnail, description, topic } = trendingData;
   const match = useRouteMatch();
-  let { url, path } = match;
+  let { url } = match;
   const fallBackImage = (e) => {
     if (e) {
       e.target.src = 'http://placehold.it/820x400';

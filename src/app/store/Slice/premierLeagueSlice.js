@@ -28,6 +28,6 @@ const premierLeagueSlice = createSlice({
   },
 });
 
-const { actions, reducer } = premierLeagueSlice;
+const { reducer } = premierLeagueSlice;
 
 export default reducer;

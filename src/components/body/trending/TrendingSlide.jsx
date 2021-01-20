@@ -17,12 +17,8 @@ const TrendingSlide = () => {
     render();
   }, [dispatch]);
   const trending = useSelector((state) => state.trending);
-  const { data, status } = trending;
-  const fallBackImage = (e) => {
-    if (e) {
-      e.target.src = 'http://placehold.it/820x400';
-    }
-  };
+  const { data } = trending;
+
   const renderTrendingItem = () => {
     return data.map((item, index) => {
       return <TrendingItem key={index} trendingData={item} />;

@@ -13,8 +13,8 @@ const NewsDetails = (props) => {
     dispatch(fetchNewById(newId));
   }, [newId]);
   const dataNewsFetch = useSelector((state) => state.dataNews);
-  const { dataById, status } = dataNewsFetch;
-  const { description, title, content, created_at, views, likes } = dataById;
+  const { dataById } = dataNewsFetch;
+  const { description, content, created_at, views } = dataById;
   return (
     <div className="detail">
       <div className="container-fluid">

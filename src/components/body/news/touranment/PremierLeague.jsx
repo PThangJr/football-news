@@ -1,23 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, useLocation } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { fetchPremierLeague } from '../../../../app/store/Slice/premierLeagueSlice';
 import NewsItem from '../components/NewsItem';
-// import NewsCardPage from '../pages/NewsCardPage';
 import NewsDetails from '../pages/NewsDetails';
 
 const PremierLeague = (props) => {
-  const location = useLocation();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPremierLeague());
-  }, []);
+  }, [dispatch]);
 
   const dataPremierLeague = useSelector((state) => state.dataPremierLeague).data;
-  const dataNews = useSelector((state) => state.dataNews).data;
 
   // console.log(dataNews)
-  // console.log(useSelector(state => state.dataPremierLeague))
 
   const mapDataPremierLeague = () => {
     if (dataPremierLeague) {
@@ -29,9 +25,7 @@ const PremierLeague = (props) => {
   return (
     <div id="news-premier-league" className="news ">
       <div className="container-fluid">
-        <a href="#" className="news__link">
-          <h3 className="news__heading">Premier League</h3>
-        </a>
+        <h3 className="news__heading">Premier League</h3>
         <div className="row">
           {mapDataPremierLeague()}
           <Switch>

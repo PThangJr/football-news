@@ -1,10 +1,8 @@
 import React from 'react';
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import NewsContainer from './container/NewsContainer';
 
 const News = (props) => {
-  const match = useRouteMatch();
-  const { url, path } = match;
   return (
     <div id="news-top" className="news">
       <div className="container-fluid">
