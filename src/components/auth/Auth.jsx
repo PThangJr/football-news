@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeFormAuth } from '../../app/store/Slice/formAuthSlice';
 import LoginForm from './form/LoginForm';
@@ -7,7 +7,18 @@ import RegisterForm from './form/RegisterForm';
 const Auth = () => {
   const formAuth = useSelector((state) => state.formAuth);
   const { isAuth, isLogin, isRegister } = formAuth;
-  // console.log(formAuth);
+  const dispatch = useDispatch();
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      dispatch(changeFormAuth({ isAuth: false }));
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const handleStatusAuth = () => {
     if (isAuth) {
@@ -18,6 +29,7 @@ const Auth = () => {
       }
     }
   };
+
   return (
     <div className="auth">
       <div className="auth__overlay "></div>

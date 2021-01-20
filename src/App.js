@@ -34,7 +34,7 @@ const App = () => {
               <Route path="/serie-a" component={SerieA} /> <Route path="/ligue-1" component={Ligue1} />
               <Route path="/UEFA-champion-league" component={UEFAChampionLeague} />
               <Route path="/UEFA-europa-league" component={UEFAEuropaLeague} />
-              <Route path="/detail-page" component={NewsDetails} />
+              <Route path="/detail-page/:newId" component={NewsDetails} />
             </Switch>
           </div>
         </main>

@@ -85,16 +85,32 @@
             &-description {
                 word-break: break-all;
                 margin: 0 10px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                @include mobile {
+                    -webkit-line-clamp: 3;
+                }
             }
         }
         //Card__top
         &__top {
-            flex: 1;
+            width: 100%;
+            @include mobile {
+                width: 35%;
+            }
         }
         //Card__body
         &__body {
             position: relative;
             flex: 1;
+            width: 100%;
+
+            @include mobile {
+                width: 65%;
+            }
             overflow: hidden;
         }
         //Card__views

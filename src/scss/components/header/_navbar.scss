@@ -16,7 +16,7 @@
     }
     &__left {
         flex: 2;
-        @include flex("");
+        @include flex(space-around);
     }
     &__menu {
         -webkit-tap-highlight-color: transparent;
@@ -29,9 +29,15 @@
         @include mobile-tablet {
             display: block;
         }
+
         &-icon {
             padding: 3px;
             margin: 0 5px;
+            &:last-child {
+                @include tablet-laptop {
+                    display: none;
+                }
+            }
         }
     }
     .header__logo {
@@ -42,6 +48,11 @@
         @include mobile {
             flex: 1;
             margin: 0;
+            padding: 0;
+            margin: 0;
+        }
+        @include tablet {
+            display: none;
         }
         &-link {
             display: inline-block;

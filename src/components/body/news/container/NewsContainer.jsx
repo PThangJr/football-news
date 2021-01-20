@@ -7,13 +7,13 @@ const NewsContainer = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchNews({ _limit: 28, _page: 1 }));
-  }, [dispatch]);
+  }, []);
   const dataNewsFetch = useSelector((state) => state.dataNews);
   const mapDataNews = () => {
     if (Array.isArray(dataNewsFetch.data)) {
-      if (dataNewsFetch.status === 'Loading') {
+      if (dataNewsFetch.isLoading) {
         return <h2>Loading...</h2>;
-      } else if (dataNewsFetch.status === 'Successfully') {
+      } else if (dataNewsFetch.isLoading === false) {
         return dataNews.map((item, index) => {
           return <NewsItem key={item._id} dataNew={item} />;
         });

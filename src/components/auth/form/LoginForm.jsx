@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { changeFormAuth } from '../../../app/store/Slice/formAuthSlice';
+import FormGroup from '../../form/form-group/FormGroup';
 
 const LoginForm = (props) => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const LoginForm = (props) => {
   const handleCloseFormAuth = () => {
     dispatch(changeFormAuth({ isAuth: false }));
   };
+
   return (
     <form className="auth__box-login">
       <div className="auth__header">
@@ -24,9 +26,9 @@ const LoginForm = (props) => {
           Đăng ký
         </button>
       </div>
-      <div className="auth__form">
-        <input type="text" placeholder="Username/Email" name="username" className="auth__form-input" />
-        <input type="password" placeholder="Password" name="password" className="auth__form-input" />
+      <div className="auth__form auth__from--login">
+        <FormGroup status="success" message="" type="text" placeholder="Username/Email..." name="username" />
+        <FormGroup status="error" message="Error" type="Password" placeholder="Password" name="password" />
       </div>
       <div className="auth__support">
         <span className="auth__forgot-pass cl-danger">Quên mật khẩu?</span>

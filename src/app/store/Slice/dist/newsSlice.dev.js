@@ -61,23 +61,23 @@ var newsSlice = (0, _toolkit.createSlice)({
   name: 'news',
   initialState: {
     data: [],
-    status: null,
+    isLoading: null,
     dataById: []
   },
   reducers: {},
   extraReducers: (_extraReducers = {}, _defineProperty(_extraReducers, fetchNews.pending, function (state, action) {
-    state.status = 'Loading';
+    state.isLoading = true;
   }), _defineProperty(_extraReducers, fetchNews.fulfilled, function (state, action) {
     state.data = action.payload;
-    state.status = 'Successfully';
+    state.isLoading = false;
   }), _defineProperty(_extraReducers, fetchNews.rejected, function (state, action) {
     state.data = [];
-    state.status = 'Server loading fail...';
+    state.isLoading = true;
   }), _defineProperty(_extraReducers, fetchNewById.pending, function (state, action) {
-    state.status = 'Loading';
+    state.isLoading = true;
   }), _defineProperty(_extraReducers, fetchNewById.fulfilled, function (state, action) {
     state.dataById = action.payload;
-    state.status = 'Successfully';
+    state.isLoading = false;
   }), _extraReducers)
 });
 var actions = newsSlice.actions,

@@ -31,8 +31,15 @@ $xl: 1200px;
         @content;
     }
 }
+
+@mixin tablet-laptop {
+    @media (min-width: #{$sm}) and (max-width: #{$lg - 1px}) {
+        @content;
+    }
+}
+
 @mixin laptop {
-    @media (max-width: #{$lt - 1px}) {
+    @media (min-width: #{$md}) and (max-width: #{$lt - 1px}) {
         @content;
     }
 }

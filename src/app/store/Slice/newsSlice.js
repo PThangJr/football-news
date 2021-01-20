@@ -14,28 +14,28 @@ const newsSlice = createSlice({
   name: 'news',
   initialState: {
     data: [],
-    status: null,
+    isLoading: null,
     dataById: [],
   },
   reducers: {},
   extraReducers: {
     [fetchNews.pending]: (state, action) => {
-      state.status = 'Loading';
+      state.isLoading = true;
     },
     [fetchNews.fulfilled]: (state, action) => {
       state.data = action.payload;
-      state.status = 'Successfully';
+      state.isLoading = false;
     },
     [fetchNews.rejected]: (state, action) => {
       state.data = [];
-      state.status = 'Server loading fail...';
+      state.isLoading = true;
     },
     [fetchNewById.pending]: (state, action) => {
-      state.status = 'Loading';
+      state.isLoading = true;
     },
     [fetchNewById.fulfilled]: (state, action) => {
       state.dataById = action.payload;
-      state.status = 'Successfully';
+      state.isLoading = false;
     },
   },
 });

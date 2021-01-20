@@ -7,9 +7,9 @@
 
 @import "./base/base";
 
-@import "./ultils/buttons";
-@import "./ultils/transform";
-@import "./ultils/color";
+@import "./utils/buttons";
+@import "./utils/transform";
+@import "./utils/util";
 
 @import "./layouts/wrapper";
 @import "./layouts/sidebar";
@@ -23,6 +23,6 @@
 @import "./components/body/result";
 @import "./components/body/card";
 @import "./components/scroll-home";
-@import "./components/auth/accounts";
+@import "./components/auth/auth";
 
 @import "./pages/news_detail_page/news-detail";

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeFormAuth } from '../../../app/store/Slice/formAuthSlice';
+import FormGroup from '../../form/form-group/FormGroup';
 
 const RegisterForm = (props) => {
   const dispatch = useDispatch();
@@ -24,15 +25,32 @@ const RegisterForm = (props) => {
           Đăng nhập
         </button>
       </div>
-      <div className="auth__form">
-        <input type="text" placeholder="Username" name="username" className="auth__form-input" />
-        <input type="email" placeholder="Email" name="email" className="auth__form-input" />
-        <input type="password" placeholder="Password" name="password" className="auth__form-input" />
-        <input type="password" placeholder="Re-Password" name="re-password" className="auth__form-input" />
+      <div className="auth__form auth__form--register">
+        <FormGroup
+          message="Username không được để trống"
+          status="error"
+          type="text"
+          placeholder="Username"
+          name="username"
+        />
+        <FormGroup type="email" placeholder="Email" name="email" />
+        <FormGroup type="password" placeholder="Password" name="password" />
+        <FormGroup type="password" placeholder="Re-Password" name="re-password" />
       </div>
-      <div className="auth__support">
-        <span className="auth__forgot-pass cl-danger">Quên mật khẩu?</span>
-        <span className="auth__help">Trợ giúp</span>
+      <div className="auth__rules">
+        <div className="form-check">
+          <input className="checkbox" type="checkbox" />
+          <span className="auth__rules-text">
+            Tôi đồng ý với
+            <a className="auth__rules-link" href="#">
+              Điều khoản dịch vụ
+            </a>
+            {/* <a className="auth__rules-link" href="#">
+              Chính sách dịch vụ
+            </a> */}
+            <span>(*)</span>
+          </span>
+        </div>
       </div>
       <div className="auth__btn">
         <button type="submit" className="btn btn--orange btn--submit btn--full-wd">

@@ -3,7 +3,6 @@ import Result from './Result';
 import TrendingSlide from './TrendingSlide';
 
 const Trending = (props) => {
-
   return (
     <div className="main-top">
       <div className="container-fluid">
