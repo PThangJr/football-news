@@ -17,6 +17,8 @@ var _formAuthSlice = _interopRequireDefault(require("./Slice/formAuthSlice"));
 
 var _paginationSlice = _interopRequireDefault(require("./pagination/paginationSlice"));
 
+var _authSlice = _interopRequireDefault(require("./Slice/authSlice"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var rootReducer = {
@@ -24,7 +26,8 @@ var rootReducer = {
   pagination: _paginationSlice["default"],
   dataPremierLeague: _premierLeagueSlice["default"],
   trending: _trendingSlice["default"],
-  formAuth: _formAuthSlice["default"]
+  formAuth: _formAuthSlice["default"],
+  auth: _authSlice["default"]
 };
 var store = (0, _toolkit.configureStore)({
   reducer: rootReducer

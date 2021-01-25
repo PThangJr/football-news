@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import InputField from '../input/InputField';
 
 const FormGroup = (props) => {
-  const { type, name, placeholder, cName, message, status } = props;
-  //   const hasError = error ? 'form-group--error' : '';
+  const { type, name, placeholder, cName, message, status, onChange, onBlur } = props;
+
   const hasStatus = status === 'success' ? 'form-group--success' : status === 'error' ? 'form-group--error' : '';
   const renderStatus = () => {
     if (status === 'success') {
@@ -24,7 +24,14 @@ const FormGroup = (props) => {
   return (
     <div className={`form-group ${hasStatus}`}>
       <div className="form-field">
-        <InputField type={type} name={name} placeholder={placeholder} className={cName} />
+        <InputField
+          onChange={onChange}
+          onBlur={onBlur}
+          type={type}
+          name={name}
+          placeholder={placeholder}
+          cName={cName}
+        />
         {renderStatus()}
       </div>
       {hasStatus === 'form-group--error' && (

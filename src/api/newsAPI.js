@@ -2,20 +2,21 @@ import axiosClient from './axiosClient';
 
 const newsAPI = {
   getAll(params) {
-    const url = '/';
-    return axiosClient.get(url, { params });
+    let { pagination, tournament = '/' } = params;
+    const url = `/news${tournament}`;
+    return axiosClient.get(url, { params: pagination });
   },
   getNewById(newsId) {
-    const url = `/${newsId}`;
+    const url = `/news/${newsId}`;
     return axiosClient.get(url);
   },
 
   getPremierLeague(params) {
-    const url = '/premier-league';
+    const url = '/news/premier-league';
     return axiosClient.get(url, { params });
   },
   getLaLiga(params) {
-    const url = '/la-liga';
+    const url = '/news/la-liga';
     return axiosClient.get(url, { params });
   },
 };

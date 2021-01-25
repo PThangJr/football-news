@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import newsAPI from '../../../api/newsAPI';
 export const fetchNews = createAsyncThunk('news/getAll', async (payload, thunkAPI) => {
+  // console.log(payload);
   const response = await newsAPI.getAll(payload);
   return response;
 });

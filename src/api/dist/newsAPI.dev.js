@@ -11,23 +11,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var newsAPI = {
   getAll: function getAll(params) {
-    var url = '/';
+    var pagination = params.pagination,
+        _params$tournament = params.tournament,
+        tournament = _params$tournament === void 0 ? '/' : _params$tournament;
+    var url = "/news".concat(tournament);
     return _axiosClient["default"].get(url, {
-      params: params
+      params: pagination
     });
   },
   getNewById: function getNewById(newsId) {
-    var url = "/".concat(newsId);
+    var url = "/news/".concat(newsId);
     return _axiosClient["default"].get(url);
   },
   getPremierLeague: function getPremierLeague(params) {
-    var url = '/premier-league';
+    var url = '/news/premier-league';
     return _axiosClient["default"].get(url, {
       params: params
     });
   },
   getLaLiga: function getLaLiga(params) {
-    var url = '/la-liga';
+    var url = '/news/la-liga';
     return _axiosClient["default"].get(url, {
       params: params
     });

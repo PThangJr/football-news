@@ -1,13 +1,17 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 
 const NewsItem = (props) => {
-  const { dataNew } = props;
+  const { dataNew, now } = props;
   const match = useRouteMatch();
   let { url } = match;
+  const { _id, title, description, created_at, likes, views, thumbnail } = dataNew;
+  const createdAt = new Date(created_at);
+  const createdBefore = now - createdAt;
+  const formatTime = () => {};
+
   if (url === '/') url = '';
-  const { _id, title, description, likes, views, thumbnail } = dataNew;
   const fallBackImage = (e) => {
     if (e) {
       e.target.src = 'http://placehold.it/285x125';

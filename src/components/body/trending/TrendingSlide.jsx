@@ -9,10 +9,17 @@ const TrendingSlide = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const render = async () => {
+      const options = {
+        pagination: {
+          _limit: 5,
+        },
+      };
       try {
-        await dispatch(fetchTrending({ _limit: 5 }));
+        await dispatch(fetchTrending(options));
         carousel();
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
     render();
   }, [dispatch]);
