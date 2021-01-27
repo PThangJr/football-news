@@ -7,7 +7,9 @@ exports["default"] = exports.fetchLogin = exports.fetchRegister = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
-var _authAPI = _interopRequireDefault(require("../../../api/authAPI"));
+var _authAPI = _interopRequireDefault(require("../../../../api/authAPI"));
+
+var _reactToastify = require("react-toastify");
 
 var _extraReducers;
 
@@ -27,21 +29,20 @@ var fetchRegister = (0, _toolkit.createAsyncThunk)('user/register', function _ca
 
         case 3:
           data = _context.sent;
-          console.log(thunkAPI.getState);
           return _context.abrupt("return", data);
 
-        case 8:
-          _context.prev = 8;
+        case 7:
+          _context.prev = 7;
           _context.t0 = _context["catch"](0);
           rejectWithValue = thunkAPI.rejectWithValue;
           return _context.abrupt("return", rejectWithValue(_context.t0.data));
 
-        case 12:
+        case 11:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 7]]);
 });
 exports.fetchRegister = fetchRegister;
 var fetchLogin = (0, _toolkit.createAsyncThunk)('user/login', function _callee2(payload, _ref) {
@@ -57,20 +58,22 @@ var fetchLogin = (0, _toolkit.createAsyncThunk)('user/login', function _callee2(
 
         case 4:
           data = _context2.sent;
-          console.log(data);
+          // console.log(data);
+          localStorage.setItem('access_token', data.access_token);
+          localStorage.setItem('user', JSON.stringify(data.user));
           return _context2.abrupt("return", data);
 
-        case 9:
-          _context2.prev = 9;
+        case 10:
+          _context2.prev = 10;
           _context2.t0 = _context2["catch"](1);
           return _context2.abrupt("return", rejectWithValue(_context2.t0.data));
 
-        case 12:
+        case 13:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[1, 9]]);
+  }, null, null, [[1, 10]]);
 });
 exports.fetchLogin = fetchLogin;
 var initialState = {
@@ -83,13 +86,38 @@ var authSlice = (0, _toolkit.createSlice)({
   reducers: {},
   extraReducers: (_extraReducers = {}, _defineProperty(_extraReducers, fetchRegister.fulfilled, function (state, action) {
     console.log(action);
+
+    _reactToastify.toast.success('Đăng ký thành cmn công!!', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
+
+    state.response = action.payload;
     state.response = action.payload;
   }), _defineProperty(_extraReducers, fetchRegister.rejected, function (state, action) {
     console.log(action.payload.message);
     state.errors = action.payload;
   }), _defineProperty(_extraReducers, fetchLogin.fulfilled, function (state, action) {
+    console.log(action);
+
+    _reactToastify.toast.success('Đăng nhập thành cmn công!!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined
+    });
+
     state.response = action.payload;
   }), _defineProperty(_extraReducers, fetchLogin.rejected, function (state, action) {
+    // console.log(action);
     state.errors = action.payload;
   }), _extraReducers)
 });

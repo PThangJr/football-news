@@ -1,13 +1,14 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { unwrapResult } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeFormAuth } from '../../../app/store/Slice/formAuthSlice';
-import FormControl from '../../form/form-control/FormControl';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
+import { fetchRegister } from '../../../app/store/Slice/Auth/authSlice';
+import { changeDisplayAuth } from '../../../app/store/Slice/Auth/displayAuthSlice';
 import CheckBoxControl from '../../form/form-control/CheckBoxControl';
-import { fetchRegister } from '../../../app/store/Slice/authSlice';
-import { unwrapResult } from '@reduxjs/toolkit';
+import FormControl from '../../form/form-control/FormControl';
+import LoadingLinear from '../../loading/LoadingLinear';
 
 const RegisterForm = (props) => {
   const dispatch = useDispatch();
@@ -17,10 +18,10 @@ const RegisterForm = (props) => {
       isLogin: true,
       isRegister: false,
     };
-    dispatch(changeFormAuth(options));
+    dispatch(changeDisplayAuth(options));
   };
   const handleCloseFormAuth = () => {
-    dispatch(changeFormAuth({ isAuth: false }));
+    dispatch(changeDisplayAuth({ isAuth: false }));
   };
   const schema = yup.object().shape({
     username: yup
@@ -39,7 +40,7 @@ const RegisterForm = (props) => {
       .string()
       .required('RePassword không được để trống!')
       .oneOf([yup.ref('password')], 'RePassword không trùng khớp!'),
-    isConfirmRule: yup.boolean('Đồng ý điều khoản').required(),
+    isConfirmRule: yup.boolean().required(),
   });
   const form = useForm({
     defaultValues: {
@@ -47,7 +48,7 @@ const RegisterForm = (props) => {
       password: '',
       email: '',
       rePassword: '',
-      isConfirmRule: '',
+      isConfirmRule: false,
     },
     resolver: yupResolver(schema),
   });
@@ -55,14 +56,15 @@ const RegisterForm = (props) => {
   const [messageError, setMessageError] = useState({
     error: [],
   });
+  const { isSubmitting } = form.formState;
   const handleRegisterSubmit = async (values) => {
     console.log(values);
     try {
       const userDispatch = await dispatch(fetchRegister(values));
       const user = unwrapResult(userDispatch);
-      console.log(user);
+      // console.log(user);
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       setMessageError({
         error: error.message,
       });
@@ -70,6 +72,7 @@ const RegisterForm = (props) => {
   };
   return (
     <form onSubmit={form.handleSubmit(handleRegisterSubmit)} className="auth__box-register rotate-y-180">
+      {isSubmitting && <LoadingLinear />}
       <div className="auth__header">
         <h3 className="auth__heading">Đăng ký</h3>
         <button onClick={handleChangeFormAuth} type="button" className="btn btn--auth btn--login">
@@ -100,7 +103,15 @@ const RegisterForm = (props) => {
         </div>
       </div>
       <div className="auth__btn">
-        <button type="submit" className="btn btn--orange btn--submit btn--full-wd">
+        <button
+          disabled={isSubmitting}
+          type="submit"
+          className={
+            isSubmitting
+              ? 'btn btn--orange btn--submit btn--full-wd btn--disabled'
+              : 'btn btn--orange btn--submit btn--full-wd'
+          }
+        >
           Đăng ký
         </button>
       </div>

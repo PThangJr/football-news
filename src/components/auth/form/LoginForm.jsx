@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { changeFormAuth } from '../../../app/store/Slice/formAuthSlice';
-import FormGroup from '../../form/form-group/FormGroup';
-import { useForm } from 'react-hook-form';
-import FormControl from '../../form/form-control/FormControl';
-import { fetchLogin } from '../../../app/store/Slice/authSlice';
-import { unwrapResult } from '@reduxjs/toolkit';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { unwrapResult } from '@reduxjs/toolkit';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
+import { fetchLogin } from '../../../app/store/Slice/Auth/authSlice';
+import { changeDisplayAuth } from '../../../app/store/Slice/Auth/displayAuthSlice';
+import FormControl from '../../form/form-control/FormControl';
+import LoadingLinear from '../../loading/LoadingLinear';
 
 const LoginForm = (props) => {
   const dispatch = useDispatch();
@@ -17,10 +17,10 @@ const LoginForm = (props) => {
       isLogin: false,
       isRegister: true,
     };
-    dispatch(changeFormAuth(options));
+    dispatch(changeDisplayAuth(options));
   };
   const handleCloseFormAuth = () => {
-    dispatch(changeFormAuth({ isAuth: false }));
+    dispatch(changeDisplayAuth({ isAuth: false }));
   };
   const schema = yup.object().shape({
     username: yup
@@ -43,21 +43,33 @@ const LoginForm = (props) => {
     resolver: yupResolver(schema),
   });
   const [messageError, setMessageError] = useState({});
+  const { isAuth } = useSelector((state) => state.displayAuth);
   const handleLoginSubmit = async (values) => {
     try {
+      // console.log(isSubmitting);
       const userDispatch = await dispatch(fetchLogin(values));
       const user = unwrapResult(userDispatch);
-      console.log(user);
+      if (isAuth) {
+        dispatch(
+          changeDisplayAuth({
+            isAuth: false,
+          })
+        );
+      }
     } catch (error) {
       console.log(error);
-      setMessageError({
-        error,
-      });
+      if (isAuth) {
+        setMessageError({
+          error,
+        });
+      }
     }
   };
-
+  const { isSubmitting } = form.formState;
   return (
     <form onSubmit={form.handleSubmit(handleLoginSubmit)} className="auth__box-login">
+      {isSubmitting && <LoadingLinear />}
+
       <div className="auth__header">
         <h3 className="auth__heading">Đăng nhập</h3>
         <button onClick={handleChangeFormAuth} type="button" className="btn btn--auth btn--register">
@@ -75,7 +87,15 @@ const LoginForm = (props) => {
         <span className="auth__help">Trợ giúp</span>
       </div>
       <div className="auth__btn">
-        <button type="submit" className="btn btn--green btn--submit btn--full-wd">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={
+            isSubmitting
+              ? `btn btn--green btn--submit btn--full-wd btn--disabled`
+              : `btn btn--green btn--submit btn--full-wd `
+          }
+        >
           Đăng nhập
         </button>
       </div>

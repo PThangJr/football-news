@@ -13,11 +13,13 @@ var _trendingSlice = _interopRequireDefault(require("./Slice/trendingSlice"));
 
 var _premierLeagueSlice = _interopRequireDefault(require("./Slice/premierLeagueSlice"));
 
-var _formAuthSlice = _interopRequireDefault(require("./Slice/formAuthSlice"));
+var _displayAuthSlice = _interopRequireDefault(require("./Slice/Auth/displayAuthSlice"));
 
 var _paginationSlice = _interopRequireDefault(require("./pagination/paginationSlice"));
 
-var _authSlice = _interopRequireDefault(require("./Slice/authSlice"));
+var _authSlice = _interopRequireDefault(require("./Slice/Auth/authSlice"));
+
+var _accountSlice = _interopRequireDefault(require("./Slice/Auth/accountSlice"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -26,11 +28,13 @@ var rootReducer = {
   pagination: _paginationSlice["default"],
   dataPremierLeague: _premierLeagueSlice["default"],
   trending: _trendingSlice["default"],
-  formAuth: _formAuthSlice["default"],
-  auth: _authSlice["default"]
+  auth: _authSlice["default"],
+  displayAuth: _displayAuthSlice["default"],
+  account: _accountSlice["default"]
 };
 var store = (0, _toolkit.configureStore)({
-  reducer: rootReducer
+  reducer: rootReducer // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(customMiddleware)
+
 });
 var _default = store;
 exports["default"] = _default;

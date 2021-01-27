@@ -6,18 +6,16 @@
     --rgba-bsd: #{$rgba-bsd};
 }
 
-html,
-body {
-    font-size: 62.5%;
+html {
     font-family: sans-serif;
-    @include mobile {
-        font-size: 55%;
-    }
 }
 
 html {
-    // box-sizing: inherit;
     scroll-behavior: smooth;
+    font-size: 62.5%;
+    @include mobile {
+        font-size: 55%;
+    }
 }
 
 ul li {
@@ -40,7 +38,8 @@ a {
 }
 
 .wrapper {
-    font-size: 1.6rem;
+    // font-size: 1.6rem;
+
     background: var(--color-page-background);
     color: var(--color-text);
     &.dark-theme {

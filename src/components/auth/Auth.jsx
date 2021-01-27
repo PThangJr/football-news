@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeFormAuth } from '../../app/store/Slice/formAuthSlice';
+import { changeDisplayAuth } from '../../app/store/Slice/Auth/displayAuthSlice';
 import LoginForm from './form/LoginForm';
 import RegisterForm from './form/RegisterForm';
-
 const Auth = () => {
-  const formAuth = useSelector((state) => state.formAuth);
-  const { isAuth, isLogin, isRegister } = formAuth;
+  const displayAuth = useSelector((state) => state.displayAuth);
+  const { isAuth, isLogin, isRegister } = displayAuth;
   const dispatch = useDispatch();
   const handleKeyDown = (e) => {
     if (e.keyCode === 27) {
-      dispatch(changeFormAuth({ isAuth: false }));
+      dispatch(changeDisplayAuth({ isAuth: false }));
     }
   };
   useEffect(() => {
@@ -18,7 +17,7 @@ const Auth = () => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [dispatch]);
 
   const handleStatusAuth = () => {
     if (isAuth) {

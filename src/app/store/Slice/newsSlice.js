@@ -2,13 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import newsAPI from '../../../api/newsAPI';
 export const fetchNews = createAsyncThunk('news/getAll', async (payload, thunkAPI) => {
   // console.log(payload);
-  const response = await newsAPI.getAll(payload);
-  return response;
-});
-
-export const fetchNewById = createAsyncThunk('news/getNewById', async (payload, thunkAPI) => {
-  const response = await newsAPI.getNewById(payload);
-  return response;
+  try {
+    const response = await newsAPI.getAll(payload);
+    return response;
+  } catch (error) {
+    const { rejectWithValue } = thunkAPI;
+    return rejectWithValue(error);
+  }
 });
 
 const newsSlice = createSlice({
@@ -16,7 +16,6 @@ const newsSlice = createSlice({
   initialState: {
     data: [],
     isLoading: null,
-    dataById: [],
   },
   reducers: {},
   extraReducers: {
@@ -28,15 +27,8 @@ const newsSlice = createSlice({
       state.isLoading = false;
     },
     [fetchNews.rejected]: (state, action) => {
-      state.data = [];
+      state.data = action.payload;
       state.isLoading = true;
-    },
-    [fetchNewById.pending]: (state, action) => {
-      state.isLoading = true;
-    },
-    [fetchNewById.fulfilled]: (state, action) => {
-      state.dataById = action.payload;
-      state.isLoading = false;
     },
   },
 });

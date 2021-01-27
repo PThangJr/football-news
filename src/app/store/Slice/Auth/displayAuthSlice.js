@@ -5,11 +5,11 @@ const initialState = {
   isRegister: false,
   isLogin: false,
 };
-const formAuthSlice = createSlice({
+const displayAuthSlice = createSlice({
   name: 'formAuth',
   initialState,
   reducers: {
-    changeFormAuth: (state, action) => {
+    changeDisplayAuth: (state, action) => {
       // console.log(action);
       const { isAuth, isLogin, isRegister } = action.payload;
       const newState = {
@@ -22,7 +22,7 @@ const formAuthSlice = createSlice({
     },
   },
 });
-const { actions, reducer } = formAuthSlice;
-export const { changeFormAuth } = actions;
+const { actions, reducer } = displayAuthSlice;
+export const { changeDisplayAuth } = actions;
 
 export default reducer;

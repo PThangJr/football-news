@@ -9,5 +9,9 @@ const newsAPI = {
     const url = '/user/login';
     return axiosClient.post(url, data);
   },
+  getAccount() {
+    const url = '/user/account';
+    return axiosClient.get(url());
+  },
 };
 export default newsAPI;

@@ -10,14 +10,5 @@ const newsAPI = {
     const url = `/news/${newsId}`;
     return axiosClient.get(url);
   },
-
-  getPremierLeague(params) {
-    const url = '/news/premier-league';
-    return axiosClient.get(url, { params });
-  },
-  getLaLiga(params) {
-    const url = '/news/la-liga';
-    return axiosClient.get(url, { params });
-  },
 };
 export default newsAPI;

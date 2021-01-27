@@ -17,6 +17,10 @@ var newsAPI = {
   login: function login(data) {
     var url = '/user/login';
     return _axiosClient["default"].post(url, data);
+  },
+  getAccount: function getAccount() {
+    var url = '/user/account';
+    return _axiosClient["default"].get(url());
   }
 };
 var _default = newsAPI;

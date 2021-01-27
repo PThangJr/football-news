@@ -22,18 +22,6 @@ var newsAPI = {
   getNewById: function getNewById(newsId) {
     var url = "/news/".concat(newsId);
     return _axiosClient["default"].get(url);
-  },
-  getPremierLeague: function getPremierLeague(params) {
-    var url = '/news/premier-league';
-    return _axiosClient["default"].get(url, {
-      params: params
-    });
-  },
-  getLaLiga: function getLaLiga(params) {
-    var url = '/news/la-liga';
-    return _axiosClient["default"].get(url, {
-      params: params
-    });
   }
 };
 var _default = newsAPI;

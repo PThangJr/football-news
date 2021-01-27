@@ -1,19 +1,22 @@
-import { configureStore } from '@reduxjs/toolkit';
-import newsSlice from './Slice/newsSlice';
-import trendingSlice from './Slice/trendingSlice';
-import premierLeagueSlice from './Slice/premierLeagueSlice';
-import formAuthSlice from './Slice/formAuthSlice';
-import paginationSlice from './pagination/paginationSlice';
-import authSlice from './Slice/authSlice';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import newsReducer from './Slice/newsSlice';
+import trendingReducer from './Slice/trendingSlice';
+import premierLeagueReducer from './Slice/premierLeagueSlice';
+import displayAuthReducer from './Slice/Auth/displayAuthSlice';
+import paginationReducer from './pagination/paginationSlice';
+import authReducer from './Slice/Auth/authSlice';
+import accountReducer from './Slice/Auth/accountSlice';
 const rootReducer = {
-  dataNews: newsSlice,
-  pagination: paginationSlice,
-  dataPremierLeague: premierLeagueSlice,
-  trending: trendingSlice,
-  formAuth: formAuthSlice,
-  auth: authSlice,
+  dataNews: newsReducer,
+  pagination: paginationReducer,
+  dataPremierLeague: premierLeagueReducer,
+  trending: trendingReducer,
+  auth: authReducer,
+  displayAuth: displayAuthReducer,
+  account: accountReducer,
 };
 const store = configureStore({
   reducer: rootReducer,
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(customMiddleware)
 });
 export default store;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InputField from '../input/InputField';
+import InputField from '../form-field/InputField';
 
 const FormGroup = (props) => {
   const { type, name, placeholder, cName, message, status, onChange, onBlur } = props;

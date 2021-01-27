@@ -8,6 +8,8 @@
 # testing
 /coverage
 rollback.html
+note.txt
+
 # production
 /build
 

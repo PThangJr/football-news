@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import parseHTML from 'react-html-parser';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { fetchNewById, fetchNews } from '../../../../app/store/Slice/newsSlice';
+import { fetchNews } from '../../../../app/store/Slice/newsSlice';
 const NewsDetails = (props) => {
   const dispatch = useDispatch();
 
@@ -13,11 +13,19 @@ const NewsDetails = (props) => {
     const options = {
       tournament: `/${newId}`,
     };
-    dispatch(fetchNews(options));
-  }, []);
+    const fetchData = async () => {
+      try {
+        dispatch(fetchNews(options));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [newId]);
   const dataNewsFetch = useSelector((state) => state.dataNews);
-  const { dataById } = dataNewsFetch;
-  const { description, content, created_at, views } = dataById;
+  const { data } = dataNewsFetch;
+  // console.log(data);
+  const { description, content, created_at, views } = data;
   return (
     <div className="detail">
       <div className="container-fluid">

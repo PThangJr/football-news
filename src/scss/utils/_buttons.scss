@@ -23,4 +23,20 @@
     &--full-wd {
         width: 100%;
     }
+    &--disabled {
+        background: grey;
+        cursor: default;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    &--default {
+        background: none;
+        outline: none;
+        cursor: pointer;
+        border: none;
+        &:hover {
+            background: transparent;
+        }
+    }
 }

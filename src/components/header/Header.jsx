@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { changeFormAuth } from '../../app/store/Slice/formAuthSlice';
 import { darkMode, toggleSidebar } from '../../js/script';
+import Account from './Account';
 const Header = () => {
   useEffect(() => {
     toggleSidebar();
     darkMode();
   }, []);
-  const dispatch = useDispatch();
-  const handleShowAuth = () => {
-    dispatch(changeFormAuth({ isLogin: true, isAuth: true, isRegister: false }));
-  };
+
   return (
     <header id="header" className="header">
       <nav className="navbar">
@@ -42,18 +38,11 @@ const Header = () => {
             <span className="icon--delete">
               <i className="icon-views fas fa-times" />
             </span>
-            
           </div>
         </div>
-        
-        <div className="accounts-header ">
-          <div onClick={handleShowAuth} className="signs">
-            <span className="accounts-header__logo">
-              <i className="icon-views fas fa-user" />
-            </span>
-            <div className="sign-in">Đăng nhập</div>
-            <div className="sign-up d-none">Đăng ký</div>
-          </div>
+
+        <div className="navbar__right ">
+          <Account />
           <div className="dark-mode">
             <span className="dark-mode__box ">
               <i className="far fa-lightbulb icon-dark-mode" />

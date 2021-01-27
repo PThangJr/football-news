@@ -8,7 +8,7 @@ const NewsContainer = (props) => {
   const dispatch = useDispatch();
   const [now, setNow] = useState(0);
   const match = useRouteMatch();
-  console.log(match.path);
+  // console.log(match.path);
   useEffect(() => {
     // setNow(new Date());
     const options = {
@@ -25,7 +25,7 @@ const NewsContainer = (props) => {
   // const date2 = new Date(2021, 1, 19);
   // console.log((date1 - date2) / 1000 / 60 / 60);
   const dataNewsFetch = useSelector((state) => state.dataNews);
-  console.log(dataNewsFetch);
+  // console.log(dataNewsFetch);
   const mapDataNews = () => {
     if (Array.isArray(dataNewsFetch.data)) {
       if (dataNewsFetch.isLoading) {
