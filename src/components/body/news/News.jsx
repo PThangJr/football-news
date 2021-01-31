@@ -1,23 +1,25 @@
 import React from 'react';
-import { NavLink, useRouteMatch } from 'react-router-dom';
-import NewsContainer from './container/NewsContainer';
+import { useRouteMatch } from 'react-router-dom';
 import * as URL from '../../../constants/urlContant';
+import Pagination from '../../pagination/Pagination';
+import NewsContainer from './container/NewsContainer';
 
 const News = (props) => {
   const match = useRouteMatch();
+
   const displayHeading = () => {
     switch (match.path) {
       case '/':
         return 'News';
-      case `/${URL.PREMIER_LEAGUE}`:
+      case `/news/${URL.PREMIER_LEAGUE}`:
         return 'Premier League';
-      case `/${URL.LA_LIGA}`:
+      case `/news/${URL.LA_LIGA}`:
         return 'La Liga';
-      case `/${URL.SERIE_A}`:
+      case `/news/${URL.SERIE_A}`:
         return 'Serie A';
-      case `/${URL.LIGUE_1}`:
+      case `/news/${URL.LIGUE_1}`:
         return 'Ligue 1';
-      case `/${URL.BUNDESLIGA}`:
+      case `/news/${URL.BUNDESLIGA}`:
         return 'Bundesliga';
       default:
         return 'News';
@@ -31,13 +33,13 @@ const News = (props) => {
           <h3 className="news__heading">{displayHeading()}</h3>
         </a>
         <div className="row">
+          {/* <Switch>
+            <Route path={`${match.path}`} children={<NewsContainer />} />
+          </Switch> */}
           <NewsContainer />
         </div>
       </div>
-      <div className="pagination">
-        <NavLink to={`?_page=2`}>2</NavLink>
-        {/* <button onClick={() => movePage(2)}>2</button> */}
-      </div>
+      <Pagination />
     </div>
   );
 };

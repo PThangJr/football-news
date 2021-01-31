@@ -5,5 +5,8 @@
 }
 
 .swal2-container div {
-    font-size: 16px ;
+    font-size: 1.6rem ;
+}
+.Toastify {
+    font-size: 1.6rem;
 }

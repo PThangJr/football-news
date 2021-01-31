@@ -10,6 +10,7 @@
 @import "./utils/buttons";
 @import "./utils/transform";
 @import "./utils/util";
+@import "./utils/position";
 
 @import "./layouts/wrapper";
 @import "./layouts/sidebar";
@@ -22,7 +23,11 @@
 @import "./components/body/trending";
 @import "./components/body/result";
 @import "./components/body/card";
+@import "./components/pagination/pagination";
 @import "./components/scroll-home";
 @import "./components/auth/auth";
 
 @import "./pages/news_detail_page/news-detail";
+
+@import "./components/loading/skeletons/news-skeleton";
+@import "./components/loading/skeletons/skeleton";

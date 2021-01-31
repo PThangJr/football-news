@@ -8,7 +8,7 @@
         padding: 5px 10px;
         margin-bottom: 10px;
         font-weight: bold;
-        color: $text-black;
+        color: var(--color-text);
         text-transform: uppercase;
     }
     .row {
@@ -78,11 +78,10 @@
             }
         }
         &__content {
+            margin: 0 10px;
             color: var(--color-text);
-            margin-top: 10px;
             &-description {
                 word-break: break-all;
-                margin: 0 10px;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
@@ -105,6 +104,7 @@
             position: relative;
             flex: 1;
             width: 100%;
+            margin-top: 10px;
 
             @include mobile {
                 width: 65%;

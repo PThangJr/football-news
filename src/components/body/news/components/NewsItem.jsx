@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink, useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 
 const NewsItem = (props) => {
   const { dataNew, now } = props;
@@ -11,7 +11,12 @@ const NewsItem = (props) => {
   const createdBefore = now - createdAt;
   const formatTime = () => {};
 
+  // const checkUrl = () => {
+  //   if (url === '/') return '';
+  //   else return '/' + url.split('/')[url.split('/').length - 1];
+  // };
   if (url === '/') url = '';
+  // console.log(url);
   const fallBackImage = (e) => {
     if (e) {
       e.target.src = 'http://placehold.it/285x125';

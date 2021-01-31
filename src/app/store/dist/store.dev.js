@@ -21,6 +21,10 @@ var _authSlice = _interopRequireDefault(require("./Slice/Auth/authSlice"));
 
 var _accountSlice = _interopRequireDefault(require("./Slice/Auth/accountSlice"));
 
+var _getUserSlice = _interopRequireDefault(require("./Slice/Auth/getUserSlice"));
+
+var _limitNewSlice = _interopRequireDefault(require("./Slice/limitNewSlice"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var rootReducer = {
@@ -30,7 +34,9 @@ var rootReducer = {
   trending: _trendingSlice["default"],
   auth: _authSlice["default"],
   displayAuth: _displayAuthSlice["default"],
-  account: _accountSlice["default"]
+  account: _accountSlice["default"],
+  limitNew: _limitNewSlice["default"],
+  user: _getUserSlice["default"]
 };
 var store = (0, _toolkit.configureStore)({
   reducer: rootReducer // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(customMiddleware)

@@ -11,16 +11,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var newsAPI = {
   register: function register(data) {
-    var url = '/user/register';
+    var url = '/auth/register';
     return _axiosClient["default"].post(url, data);
   },
   login: function login(data) {
-    var url = '/user/login';
+    var url = '/auth/login';
     return _axiosClient["default"].post(url, data);
   },
-  getAccount: function getAccount() {
-    var url = '/user/account';
-    return _axiosClient["default"].get(url());
+  getUser: function getUser() {
+    var url = '/auth/information';
+    return _axiosClient["default"].get(url);
   }
 };
 var _default = newsAPI;

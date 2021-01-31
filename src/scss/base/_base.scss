@@ -4,6 +4,7 @@
     --color-text: #{$color-black};
     --bg-modal-exit: rgba(36, 35, 35, 0.2);
     --rgba-bsd: #{$rgba-bsd};
+    --bg-skeleton: #ddd;
 }
 
 html {
@@ -48,5 +49,6 @@ a {
         --color-sidebar: #{$color-black};
         --bg-modal-exit: rgba(173, 173, 173, 0.5);
         --rgba-bsd: #{$rgba-bsd-white};
+        --bg-skeleton: #444;
     }
 }

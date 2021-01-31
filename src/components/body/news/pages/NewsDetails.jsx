@@ -3,12 +3,15 @@ import parseHTML from 'react-html-parser';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchNews } from '../../../../app/store/Slice/newsSlice';
+import NewsDetailSkeleton from '../../../loading/skeletons/news-detail/NewsDetailSkeleton';
 const NewsDetails = (props) => {
+  // console.log('render...');
   const dispatch = useDispatch();
 
   const location = useLocation();
   const address = location.pathname.split('/');
   const newId = address[address.length - 1];
+  // console.log(newId);
   useEffect(() => {
     const options = {
       tournament: `/${newId}`,
@@ -23,12 +26,13 @@ const NewsDetails = (props) => {
     fetchData();
   }, [newId]);
   const dataNewsFetch = useSelector((state) => state.dataNews);
-  const { data } = dataNewsFetch;
-  // console.log(data);
+  const { data, isLoading } = dataNewsFetch;
   const { description, content, created_at, views } = data;
-  return (
-    <div className="detail">
-      <div className="container-fluid">
+  const renderNewDetail = () => {
+    if (isLoading) {
+      return <NewsDetailSkeleton />;
+    } else {
+      return (
         <div className="row">
           <div className="col-xl-9 col-lg-12 col-md-12 col-sm-12">
             <div className="detail-left">
@@ -55,7 +59,12 @@ const NewsDetails = (props) => {
             <div className="detail-right">Adventisment</div>
           </div>
         </div>
-      </div>
+      );
+    }
+  };
+  return (
+    <div className="detail">
+      <div className="container-fluid">{renderNewDetail()}</div>
     </div>
   );
 };

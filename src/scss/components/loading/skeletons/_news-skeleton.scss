@@ -1,0 +1,18 @@
+.news-skeleton {
+    background: var(--bg-skeleton);
+    border-radius: 8px;
+    &--image {
+        height: 160px;
+        @include mobile {
+            height: 100px;
+        }
+    }
+    &--description {
+        width: 100%;
+        height: 42px;
+    }
+    &--views {
+        width: 125px;
+        height: 20px;
+    }
+}

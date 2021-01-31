@@ -9,7 +9,7 @@
 /coverage
 rollback.html
 note.txt
-
+.env
 # production
 /build
 

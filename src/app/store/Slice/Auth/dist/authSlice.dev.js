@@ -103,11 +103,17 @@ var authSlice = (0, _toolkit.createSlice)({
     console.log(action.payload.message);
     state.errors = action.payload;
   }), _defineProperty(_extraReducers, fetchLogin.fulfilled, function (state, action) {
-    console.log(action);
+    console.log(action.payload.user.role);
+    var role = action.payload.user.role;
+    var message = 'Đăng nhập thành công !!';
 
-    _reactToastify.toast.success('Đăng nhập thành cmn công!!', {
+    if (role === 0) {
+      message = 'Đăng nhập với quyền Admin';
+    }
+
+    _reactToastify.toast.success(message, {
       position: 'top-right',
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

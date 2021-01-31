@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.LIGUE_1 = exports.BUNDESLIGA = exports.SERIE_A = exports.PREMIER_LEAGUE = exports.LA_LIGA = void 0;
 var LA_LIGA = 'la-liga';
 exports.LA_LIGA = LA_LIGA;
-var PREMIER_LEAGUE = 'premier_league';
+var PREMIER_LEAGUE = 'premier-league';
 exports.PREMIER_LEAGUE = PREMIER_LEAGUE;
 var SERIE_A = 'serie-a';
 exports.SERIE_A = SERIE_A;

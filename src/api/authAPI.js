@@ -2,16 +2,16 @@ import axiosClient from './axiosClient';
 
 const newsAPI = {
   register(data) {
-    const url = '/user/register';
+    const url = '/auth/register';
     return axiosClient.post(url, data);
   },
   login(data) {
-    const url = '/user/login';
+    const url = '/auth/login';
     return axiosClient.post(url, data);
   },
-  getAccount() {
-    const url = '/user/account';
-    return axiosClient.get(url());
+  getUser() {
+    const url = '/auth/information';
+    return axiosClient.get(url);
   },
 };
 export default newsAPI;

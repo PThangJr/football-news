@@ -1,0 +1,11 @@
+.skeleton {
+  border-radius: 8px;
+  background: var(--bg-skeleton);
+  animation: animateSkeleton 1s forwards infinite;
+}
+.skeleton--text {
+  width: 100%;
+}
+.skeleton--image {
+  width: 100%;
+}

@@ -9,20 +9,21 @@ const trendingSlice = createSlice({
   name: 'trending',
   initialState: {
     data: [],
-    status: null,
+    isLoading: null,
   },
   reducers: {},
   extraReducers: {
     [fetchTrending.pending]: (state, action) => {
       state.status = 'Loading';
+      state.isLoading = true;
     },
     [fetchTrending.fulfilled]: (state, action) => {
-      state.data = action.payload;
-      state.status = 'Successfully';
+      state.data = action.payload.data;
+      state.isLoading = false;
     },
     [fetchTrending.rejected]: (state, action) => {
       state.data = [];
-      state.status = 'Server loading fail...';
+      state.isLoading = false;
     },
   },
 });

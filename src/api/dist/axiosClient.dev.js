@@ -9,23 +9,28 @@ var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+// console.log(process.env.REACT_APP_BASE_LINK_API);
 var axiosClient = _axios["default"].create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: process.env.REACT_APP_BASE_LINK_API,
   header: {
     'Content-Type': 'application/json'
   }
-});
+}); // axiosClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-var token = localStorage.getItem('access_token'); // console.log(token);
 
-axiosClient.defaults.headers.common['Authorization'] = token;
 var _default = axiosClient; // Add a request interceptor
 
 exports["default"] = _default;
 axiosClient.interceptors.request.use(function (config) {
   // Do something before request is sent
-  // console.log(config);
-  return config; //Gắn token
+  // console.log(config.headers);
+  var token = localStorage.getItem('access_token');
+
+  if (token) {
+    config.headers['Authorization'] = "Bearer ".concat(token);
+  }
+
+  return config;
 }, function (error) {
   // Do something with request error
   return Promise.reject(error);
