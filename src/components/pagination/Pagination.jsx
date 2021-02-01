@@ -1,92 +1,91 @@
+import queryString from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, NavLink, useHistory, useLocation, useRouteMatch } from 'react-router-dom';
-import queryString from 'query-string';
-import { current } from '@reduxjs/toolkit';
+import { Link, useLocation } from 'react-router-dom';
 const Pagination = (props) => {
   const location = useLocation();
   const { pathname } = location;
   const total = useSelector((state) => state.dataNews).total;
   const limitNew = useSelector((state) => state.limitNew);
-  const page = Math.ceil(total / limitNew) + 1;
+  const page = Math.ceil(total / limitNew);
+  // console.log(page);
   // let listPageCurrent = listPageCurrent + 5 < page ? listPageCurrent + 5 : page;
-  console.log(page);
-  let currentPage = queryString.parse(location.search, { parseNumbers: true })._page;
+  let currentPage = queryString.parse(location.search, { parseNumbers: true })._page || 1;
+  //State
+  const [startPage, setStartPage] = useState(0);
+  const [endPage, setEndPage] = useState(5);
+
   useEffect(() => {
-    // console.log(queryString.parse(location.search, { parseNumbers: true }));
-    const pageItems = document.querySelectorAll('.page-item');
-    console.log(pageItems);
-    if (pageItems.length === 0) return;
-    console.log(pageItems);
-    pageItems[currentPage - 1].classList.add('page-item--active');
-    if (currentPage < 6) {
+    let pageItems = document.querySelectorAll('.page-item');
+    if (pageItems.length <= 1) return;
+    for (let i = 0; i < pageItems.length; i++) {
+      pageItems[i].classList.remove('page-item--active');
+    }
+    for (let i = 0; i < pageItems.length; i++) {
+      const activePage = parseInt(pageItems[i].textContent);
+      if (activePage === currentPage) {
+        pageItems[i].classList.add('page-item--active');
+      }
+    }
+    if (currentPage >= 1 && currentPage < 5) {
+      setStartPage(0);
+      setEndPage(5);
+    } else if (currentPage >= 5 && currentPage <= page - 4) {
+      setStartPage(currentPage - 2);
+      setEndPage(currentPage + 3);
+      console.log('hey');
+    } else if (currentPage > page - 4) {
+      setStartPage(page - 5);
+      setEndPage(page);
+      console.log('next');
     } else {
-      console.log(pageItems[1]);
-      // for (let i = 0; i < pageItems.length; i++) {
-      //   pageItems[i].classList.remove('page-item--active');
-      // }
+      for (let i = 0; i < pageItems.length; i++) {
+        pageItems[i].classList.remove('page-item--active');
+      }
       pageItems[0].classList.add('page-item--active');
     }
-  }, [currentPage]);
-
-  //State
-  const [listPage, setlistPage] = useState(page);
-  const [startPage, setStartPage] = useState(1);
+  }, [page, currentPage, startPage, endPage]);
 
   const renderPage = () => {
     let arr = [];
-    for (let i = startPage; i < page; i++) {
+    for (let i = 1; i <= page; i++) {
       arr.push(i);
     }
-    // return arr.map((item, index) => {
-    //   return (
-    //     <li onClick={(e) => handleChangePage(e, item)} key={item} className="page-item">
-    //       {item}
-    //     </li>
-    //   );
-    // });
+    if (currentPage >= 5) {
+    }
+    // console.log(startPage, endPage);
 
+    arr = arr.slice(startPage, endPage);
     return arr.map((item, index) => (
-      <li onClick={(e) => handleChangePage(e, item)} className={'page-item'} key={item}>
-        <Link
-          to={`${pathname}?_page=${item}`}
-          className={`page-item__link`}
-          // activeClassName="page-item__link--active"
-        >
+      <li className={'page-item'} key={item}>
+        <Link to={`${pathname}?_page=${item}`} className={`page-item__link`}>
           {item}
         </Link>
       </li>
     ));
   };
-  const handleChangePage = (e, item) => {
-    if (item === listPage - 1 && listPage < 13) {
-      // setlistPage(listPage + 2);
-      // setStartPage(listPage - 3);
-      // console.log(e.target);
-      // e.target.parentElement.classList.add('page-item--active');
-    }
-    // else if (item === listPage )
-    else {
-      const pageItems = document.querySelectorAll('.page-item');
-      for (let i = 0; i < pageItems.length; i++) {
-        pageItems[i].classList.remove('page-item--active');
-      }
-      e.target.parentElement.classList.add('page-item--active');
-    }
-    // history.push({
-    //   pathname: match.path,
-    //   search: item === 1 ? '' : `?_page=${item}`,
-    // });
-  };
+
   return (
     <div className="pagination">
       <ul className="page-list">
+        <p className="btn-icon btn-icon--prev" disabled={currentPage <= 1}>
+          <Link
+            to={currentPage > 1 ? `?_page=${currentPage - 1}` : `?_page=${currentPage}`}
+            className={currentPage > 1 ? 'btn-icon__link ' : 'btn-icon__link btn-icon__link--disabled'}
+          >
+            <i className="fas fa-chevron-left"></i>
+          </Link>
+        </p>
         {renderPage()}
-        {/* <li className="page-item">
-          <p onClick={(e) => handleChangePage(e, -1)} className="page-item__link">
-            ...
-          </p>
-        </li> */}
+
+        <p className="btn-icon btn-icon--next">
+          <Link
+            to={currentPage <= page - 1 ? `?_page=${currentPage + 1}` : `?_page=${currentPage}`}
+            className={currentPage < page ? 'btn-icon__link ' : 'btn-icon__link btn-icon__link--disabled'}
+          >
+            <i className="fas fa-chevron-right"></i>
+          </Link>
+        </p>
       </ul>
     </div>
   );
