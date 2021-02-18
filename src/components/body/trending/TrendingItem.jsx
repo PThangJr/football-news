@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 const TrendingItem = (props) => {
   const { trendingData } = props;
-  const { _id, thumbnail, description, topic } = trendingData;
+  const { _id, thumbnail, topic, title } = trendingData;
   const match = useRouteMatch();
   // let { url } = match;
   // console.log(url);
@@ -20,7 +20,7 @@ const TrendingItem = (props) => {
         <img onError={fallBackImage} className="trending-img" src={thumbnail} alt="" />
         <div className="trending__description">
           <h3 className="trending__title">{topic}</h3>
-          <span className="trending__content">{description}</span>
+          <span className="trending__content">{title}</span>
         </div>
       </NavLink>
     </li>

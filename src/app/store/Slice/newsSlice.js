@@ -17,6 +17,7 @@ const newsSlice = createSlice({
     data: [],
     isLoading: null,
     total: 0,
+    error: null,
   },
   reducers: {},
   extraReducers: {
@@ -24,13 +25,12 @@ const newsSlice = createSlice({
       state.isLoading = true;
     },
     [fetchNews.fulfilled]: (state, action) => {
-      // console.log(action.payload);
       state.data = action.payload.data;
       state.isLoading = false;
       state.total = action.payload.total;
     },
     [fetchNews.rejected]: (state, action) => {
-      state.data = action.payload;
+      state.error = action.payload;
       state.isLoading = true;
     },
   },

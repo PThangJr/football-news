@@ -6,13 +6,13 @@ import CheckBoxField from '../form-field/CheckBoxField';
 const CheckBoxControl = (props) => {
   const { type, name, form } = props;
   const { errors } = form;
-  // console.log(errors);
+
   return (
     <Controller
       control={form.control}
       name={name}
       render={({ onChange }) => {
-        return <CheckBoxField onChange={onChange} name={name} />;
+        return <CheckBoxField error={errors?.[name]?.message || ''} onChange={onChange} name={name} />;
       }}
     />
   );

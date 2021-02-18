@@ -48,18 +48,18 @@ var newsSlice = (0, _toolkit.createSlice)({
   initialState: {
     data: [],
     isLoading: null,
-    total: 0
+    total: 0,
+    error: null
   },
   reducers: {},
   extraReducers: (_extraReducers = {}, _defineProperty(_extraReducers, fetchNews.pending, function (state, action) {
     state.isLoading = true;
   }), _defineProperty(_extraReducers, fetchNews.fulfilled, function (state, action) {
-    // console.log(action.payload);
     state.data = action.payload.data;
     state.isLoading = false;
     state.total = action.payload.total;
   }), _defineProperty(_extraReducers, fetchNews.rejected, function (state, action) {
-    state.data = action.payload;
+    state.error = action.payload;
     state.isLoading = true;
   }), _extraReducers)
 });

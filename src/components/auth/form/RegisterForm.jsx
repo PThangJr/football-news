@@ -40,7 +40,7 @@ const RegisterForm = (props) => {
       .string()
       .required('RePassword không được để trống!')
       .oneOf([yup.ref('password')], 'RePassword không trùng khớp!'),
-    isConfirmRule: yup.boolean().required(),
+    isConfirmRule: yup.boolean().required().oneOf([true], 'Error'),
   });
   const form = useForm({
     defaultValues: {

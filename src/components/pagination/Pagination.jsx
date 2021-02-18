@@ -14,50 +14,26 @@ const Pagination = (props) => {
   //State
   const [startPage, setStartPage] = useState(0);
   const [endPage, setEndPage] = useState(5);
-
   useEffect(() => {
-    let pageItems = document.querySelectorAll('.page-item');
-    if (pageItems.length <= 1) return;
-    for (let i = 0; i < pageItems.length; i++) {
-      pageItems[i].classList.remove('page-item--active');
+    if (currentPage > 2) {
+      setStartPage(currentPage - 3);
+      setEndPage(currentPage + 2);
     }
-    for (let i = 0; i < pageItems.length; i++) {
-      const activePage = parseInt(pageItems[i].textContent);
-      if (activePage === currentPage) {
-        pageItems[i].classList.add('page-item--active');
-      }
-    }
-    if (currentPage >= 1 && currentPage < 5) {
+    return () => {
       setStartPage(0);
       setEndPage(5);
-    } else if (currentPage >= 5 && currentPage <= page - 4) {
-      setStartPage(currentPage - 2);
-      setEndPage(currentPage + 3);
-      console.log('hey');
-    } else if (currentPage > page - 4) {
-      setStartPage(page - 5);
-      setEndPage(page);
-      console.log('next');
-    } else {
-      for (let i = 0; i < pageItems.length; i++) {
-        pageItems[i].classList.remove('page-item--active');
-      }
-      pageItems[0].classList.add('page-item--active');
-    }
-  }, [page, currentPage, startPage, endPage]);
-
+    };
+  }, [currentPage, page]);
   const renderPage = () => {
     let arr = [];
     for (let i = 1; i <= page; i++) {
       arr.push(i);
     }
-    if (currentPage >= 5) {
-    }
-    // console.log(startPage, endPage);
-
+    if (arr.length === 0) return;
     arr = arr.slice(startPage, endPage);
+    console.log(startPage, endPage);
     return arr.map((item, index) => (
-      <li className={'page-item'} key={item}>
+      <li className={currentPage === item ? 'page-item page-item--active' : 'page-item'} key={item} page={item}>
         <Link to={`${pathname}?_page=${item}`} className={`page-item__link`}>
           {item}
         </Link>

@@ -1,7 +1,9 @@
+import { unwrapResult } from '@reduxjs/toolkit';
 import React, { useEffect } from 'react';
 import parseHTML from 'react-html-parser';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { fetchNews } from '../../../../app/store/Slice/newsSlice';
 import NewsDetailSkeleton from '../../../loading/skeletons/news-detail/NewsDetailSkeleton';
 const NewsDetails = (props) => {
@@ -10,23 +12,32 @@ const NewsDetails = (props) => {
 
   const location = useLocation();
   const address = location.pathname.split('/');
-  const newId = address[address.length - 1];
-  // console.log(newId);
+  const slug = address[address.length - 1];
   useEffect(() => {
     const options = {
-      tournament: `/${newId}`,
+      tournament: `/${slug}`,
     };
     const fetchData = async () => {
       try {
-        dispatch(fetchNews(options));
+        const action = await dispatch(fetchNews(options));
+        const result = unwrapResult(action);
       } catch (error) {
         console.log(error);
+        if (error.status === 404) {
+          const { message } = error.data.error;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+            footer: '<a href="/">Quay lại trang chủ</a>',
+          });
+        }
       }
     };
     fetchData();
-  }, [newId]);
+  }, [slug]);
   const dataNewsFetch = useSelector((state) => state.dataNews);
-  const { data, isLoading } = dataNewsFetch;
+  const { data, isLoading, error } = dataNewsFetch;
   const { description, content, created_at, views } = data;
   const renderNewDetail = () => {
     if (isLoading) {
@@ -64,7 +75,10 @@ const NewsDetails = (props) => {
   };
   return (
     <div className="detail">
-      <div className="container-fluid">{renderNewDetail()}</div>
+      <div className="container-fluid">
+        {!error && renderNewDetail()}
+        {error?.status === 404 && <h1>404 - Not Found</h1>}
+      </div>
     </div>
   );
 };

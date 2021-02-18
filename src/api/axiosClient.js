@@ -3,6 +3,7 @@ import axios from 'axios';
 // console.log(process.env.REACT_APP_BASE_LINK_API);
 const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_BASE_LINK_API,
+  // baseURL: 'http://localhost:6000',
   header: {
     'Content-Type': 'application/json',
   },

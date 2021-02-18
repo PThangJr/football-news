@@ -52,3 +52,17 @@ a {
         --bg-skeleton: #444;
     }
 }
+.swal2-container {
+    div {
+        font-size: 1.6rem !important;
+    }
+    #swal2-content {
+        font-size: 2rem !important;
+    }
+    .swal2-confirm {
+        min-width: 100px;
+    }
+}
+.Toastify {
+    font-size: 1.6rem !important;
+}

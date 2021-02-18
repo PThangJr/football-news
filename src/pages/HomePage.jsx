@@ -31,7 +31,7 @@ const HomePage = (props) => {
               <Route path={`/news/serie-a`} component={News} />
               <Route path={`/news/bundesliga`} component={News} />
               <Route path={`/news/ligue-1`} component={News} />
-              <Route path={`/detail-page/:id`} component={NewsDetails} />
+              <Route path={`/detail-page/:slug`} component={NewsDetails} />
               <Route>
                 <Redirect to="/not-found" />
               </Route>

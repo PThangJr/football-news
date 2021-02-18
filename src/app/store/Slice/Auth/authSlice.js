@@ -55,12 +55,7 @@ const authSlice = createSlice({
       state.errors = action.payload;
     },
     [fetchLogin.fulfilled]: (state, action) => {
-      console.log(action.payload.user.role);
-      const role = action.payload.user.role;
       let message = 'Đăng nhập thành công !!';
-      if (role === 0) {
-        message = 'Đăng nhập với quyền Admin';
-      }
       toast.success(message, {
         position: 'top-right',
         autoClose: 2000,
