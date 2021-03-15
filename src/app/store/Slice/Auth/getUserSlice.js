@@ -4,8 +4,6 @@ import authAPI from '../../../../api/authAPI';
 export const fetchGetUser = createAsyncThunk('auth/information', async (payload, thunkAPI) => {
   try {
     const user = await authAPI.getUser();
-
-    console.log(user);
     return user;
   } catch (error) {
     const { rejectWithValue } = thunkAPI;
@@ -14,15 +12,16 @@ export const fetchGetUser = createAsyncThunk('auth/information', async (payload,
 });
 const getUserSlice = createSlice({
   name: 'get-user',
-  initialState: {},
+  initialState: {
+    user: {},
+    errors: null,
+  },
   extraReducers: {
     [fetchGetUser.fulfilled]: (state, action) => {
-      console.log(action);
-      state = action.payload;
+      state.user = action.payload.user;
     },
     [fetchGetUser.rejected]: (state, action) => {
-      console.log(action);
-      state = action.payload;
+      state.errors = action.payload;
     },
   },
 });

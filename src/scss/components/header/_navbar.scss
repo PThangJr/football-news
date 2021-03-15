@@ -206,6 +206,14 @@
             }
             &__setting-item {
                 padding: 10px 12px;
+                border-bottom: 1px solid rgb(224, 224, 224);
+                color: $color-black;
+                &:hover {
+                    .text-content {
+                        margin-left: 8px;
+                        opacity: 0.8;
+                    }
+                }
             }
             &--active {
                 &:hover {

@@ -19,9 +19,15 @@ var newsAPI = {
       params: pagination
     });
   },
-  getNewById: function getNewById(newsId) {
-    var url = "/news/".concat(newsId);
+  getNewBySlug: function getNewBySlug(params) {
+    var slug = params.slug;
+    var url = "/detail-new".concat(slug);
     return _axiosClient["default"].get(url);
+  },
+  postLiked: function postLiked(params) {
+    var slug = params.slug;
+    var url = "/detail-new/".concat(slug);
+    return _axiosClient["default"].post(url);
   }
 };
 var _default = newsAPI;

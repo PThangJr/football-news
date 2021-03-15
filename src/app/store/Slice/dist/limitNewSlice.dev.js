@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
-var initialState = 3;
+var initialState = 16;
 var limitSlice = (0, _toolkit.createSlice)({
   name: 'limitNew',
   initialState: initialState

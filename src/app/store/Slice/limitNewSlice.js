@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = 3;
+const initialState = 16;
 
 const limitSlice = createSlice({
   name: 'limitNew',

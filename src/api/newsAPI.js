@@ -6,9 +6,15 @@ const newsAPI = {
     const url = `/news${tournament}`;
     return axiosClient.get(url, { params: pagination });
   },
-  getNewById(newsId) {
-    const url = `/news/${newsId}`;
+  getNewBySlug(params) {
+    const { slug } = params;
+    const url = `/detail-new${slug}`;
     return axiosClient.get(url);
+  },
+  postLiked(params) {
+    const { slug } = params;
+    const url = `/detail-new/${slug}`;
+    return axiosClient.post(url);
   },
 };
 export default newsAPI;

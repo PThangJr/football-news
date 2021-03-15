@@ -11,17 +11,7 @@ import LoadingLinear from '../../loading/LoadingLinear';
 
 const LoginForm = (props) => {
   const dispatch = useDispatch();
-  const handleChangeFormAuth = () => {
-    const options = {
-      isAuth: true,
-      isLogin: false,
-      isRegister: true,
-    };
-    dispatch(changeDisplayAuth(options));
-  };
-  const handleCloseFormAuth = () => {
-    dispatch(changeDisplayAuth({ isAuth: false }));
-  };
+
   const schema = yup.object().shape({
     username: yup
       .string()
@@ -43,7 +33,7 @@ const LoginForm = (props) => {
     resolver: yupResolver(schema),
   });
   const [messageError, setMessageError] = useState({});
-  const { isAuth } = useSelector((state) => state.displayAuth);
+  const { isAuth, isLogin, isRegister } = useSelector((state) => state.displayAuth);
   const handleLoginSubmit = async (values) => {
     try {
       // console.log(isSubmitting);
@@ -58,14 +48,25 @@ const LoginForm = (props) => {
       }
     } catch (error) {
       console.log(error);
-      if (isAuth) {
-        setMessageError({
-          error,
-        });
-      }
+      setMessageError({
+        error,
+      });
     }
   };
   const { isSubmitting } = form.formState;
+  const { clearErrors } = form;
+  const handleChangeFormAuth = () => {
+    const options = {
+      isAuth: true,
+      isLogin: false,
+      isRegister: true,
+    };
+    dispatch(changeDisplayAuth(options));
+    clearErrors();
+  };
+  const handleCloseFormAuth = () => {
+    dispatch(changeDisplayAuth({ isAuth: false }));
+  };
   return (
     <form onSubmit={form.handleSubmit(handleLoginSubmit)} className="auth__box-login">
       {isSubmitting && <LoadingLinear />}
@@ -77,8 +78,8 @@ const LoginForm = (props) => {
         </button>
       </div>
       <div className="auth__form auth__from--login">
-        <FormControl message={messageError.error} form={form} type="text" placeholder="Username" name="username" />
-        <FormControl message={messageError.error} form={form} type="password" placeholder="Password" name="password" />
+        <FormControl message={messageError} form={form} type="text" placeholder="Username" name="username" />
+        <FormControl message={messageError} form={form} type="password" placeholder="Password" name="password" />
         {/* <FormGroup status="success" message="" type="text" placeholder="Username/Email..." name="username" /> */}
         {/* <FormGroup status="error" message="Error" type="Password" placeholder="Password" name="password" /> */}
       </div>

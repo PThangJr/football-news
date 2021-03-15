@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FormGroup from '../form-group/FormGroup';
 import { Controller } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 const FormControl = (props) => {
+  const { isAuth, isLogin, isRegister } = useSelector((state) => state.displayAuth);
   const { type, name, placeholder, cName, message, form } = props;
   const { errors, formState } = form;
   const hasError = errors[name];
@@ -19,8 +21,8 @@ const FormControl = (props) => {
           name={name}
           type={type}
           placeholder={placeholder}
-          status={hasError ? 'error' : message?.[name] ? 'error' : ''}
-          message={hasError?.message || message?.[name] || ''}
+          status={hasError ? 'error' : message?.error?.[name] ? 'error' : ''}
+          message={hasError?.message || message?.error?.[name] || ''}
         />
       )}
     />

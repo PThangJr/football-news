@@ -27,32 +27,32 @@ var fetchGetUser = (0, _toolkit.createAsyncThunk)('auth/information', function _
 
         case 3:
           user = _context.sent;
-          console.log(user);
           return _context.abrupt("return", user);
 
-        case 8:
-          _context.prev = 8;
+        case 7:
+          _context.prev = 7;
           _context.t0 = _context["catch"](0);
           rejectWithValue = thunkAPI.rejectWithValue;
           return _context.abrupt("return", rejectWithValue(_context.t0.data));
 
-        case 12:
+        case 11:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 7]]);
 });
 exports.fetchGetUser = fetchGetUser;
 var getUserSlice = (0, _toolkit.createSlice)({
   name: 'get-user',
-  initialState: {},
+  initialState: {
+    user: {},
+    errors: null
+  },
   extraReducers: (_extraReducers = {}, _defineProperty(_extraReducers, fetchGetUser.fulfilled, function (state, action) {
-    console.log(action);
-    state = action.payload;
+    state.user = action.payload.user;
   }), _defineProperty(_extraReducers, fetchGetUser.rejected, function (state, action) {
-    console.log(action);
-    state = action.payload;
+    state.errors = action.payload;
   }), _extraReducers)
 });
 var reducer = getUserSlice.reducer;

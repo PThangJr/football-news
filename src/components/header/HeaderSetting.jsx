@@ -26,10 +26,16 @@ const HeaderSetting = (props) => {
   };
   return (
     <ul onClick={handleStopPropagation} className="account__setting-list">
-      <li className="account__setting-item">Thông tin tài khoản</li>
-      <li className="account__setting-item">Đổi mật khẩu</li>
+      <li className="account__setting-item">
+        <span className="text-content">Thông tin tài khoản</span>
+      </li>
+      <li className="account__setting-item">
+        <span className="text-content">Đổi mật khẩu</span>
+      </li>
       <li onClick={handleLogout} className="account__setting-item">
-        Đăng xuất <i className="fas fa-sign-out-alt"></i>
+        <span className="text-content">
+          Đăng xuất <i className="fas fa-sign-out-alt"></i>
+        </span>
       </li>
     </ul>
   );

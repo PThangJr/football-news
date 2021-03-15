@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeDisplayAuth } from '../../app/store/Slice/Auth/displayAuthSlice';
 import LoginForm from './form/LoginForm';
@@ -28,7 +28,7 @@ const Auth = () => {
       }
     }
   };
-
+  const [auth, setAuth] = useState('register');
   return (
     <div className="auth">
       <div className="auth__overlay "></div>

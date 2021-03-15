@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { unwrapResult } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { fetchRegister } from '../../../app/store/Slice/Auth/authSlice';
 import { changeDisplayAuth } from '../../../app/store/Slice/Auth/displayAuthSlice';
@@ -12,17 +12,8 @@ import LoadingLinear from '../../loading/LoadingLinear';
 
 const RegisterForm = (props) => {
   const dispatch = useDispatch();
-  const handleChangeFormAuth = () => {
-    const options = {
-      isAuth: true,
-      isLogin: true,
-      isRegister: false,
-    };
-    dispatch(changeDisplayAuth(options));
-  };
-  const handleCloseFormAuth = () => {
-    dispatch(changeDisplayAuth({ isAuth: false }));
-  };
+  const { isAuth, isLogin, isRegister } = useSelector((state) => state.displayAuth);
+
   const schema = yup.object().shape({
     username: yup
       .string()
@@ -54,8 +45,9 @@ const RegisterForm = (props) => {
   });
   // const auth = useSelector((state) => state.auth);
   const [messageError, setMessageError] = useState({
-    error: [],
+    error: {},
   });
+  const { clearErrors } = form;
   const { isSubmitting } = form.formState;
   const handleRegisterSubmit = async (values) => {
     console.log(values);
@@ -63,12 +55,25 @@ const RegisterForm = (props) => {
       const userDispatch = await dispatch(fetchRegister(values));
       const user = unwrapResult(userDispatch);
       // console.log(user);
+      dispatch(changeDisplayAuth({ isAuth: true, isLogin: true, isRegister: false }));
     } catch (error) {
-      // console.log(error.message);
+      console.log(error.error.message);
       setMessageError({
-        error: error.message,
+        error: error.error.message,
       });
     }
+  };
+  const handleCloseFormAuth = () => {
+    dispatch(changeDisplayAuth({ isAuth: false }));
+  };
+  const handleChangeFormAuth = () => {
+    const options = {
+      isAuth: true,
+      isLogin: true,
+      isRegister: false,
+    };
+    dispatch(changeDisplayAuth(options));
+    clearErrors();
   };
   return (
     <form onSubmit={form.handleSubmit(handleRegisterSubmit)} className="auth__box-register rotate-y-180">
@@ -80,8 +85,8 @@ const RegisterForm = (props) => {
         </button>
       </div>
       <div className="auth__form auth__form--register">
-        <FormControl message={messageError.error[0]} form={form} type="text" placeholder="Username" name="username" />
-        <FormControl message={messageError.error[1]} form={form} type="email" placeholder="Email" name="email" />
+        <FormControl message={messageError} form={form} type="text" placeholder="Username" name="username" />
+        <FormControl message={messageError} form={form} type="email" placeholder="Email" name="email" />
         <FormControl form={form} type="password" placeholder="Password" name="password" />
         <FormControl form={form} type="password" placeholder="Re-Password" name="rePassword" />
       </div>

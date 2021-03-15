@@ -15,9 +15,17 @@ const Pagination = (props) => {
   const [startPage, setStartPage] = useState(0);
   const [endPage, setEndPage] = useState(5);
   useEffect(() => {
-    if (currentPage > 2) {
-      setStartPage(currentPage - 3);
-      setEndPage(currentPage + 2);
+    if (page) {
+      if (currentPage > 5 && currentPage > page - 4) {
+        setStartPage(page - 5);
+        setEndPage(page);
+      } else if (page <= 5) {
+        setStartPage(0);
+        setEndPage(5);
+      } else if (currentPage > 2 || currentPage === page - 5) {
+        setStartPage(currentPage - 3);
+        setEndPage(currentPage + 2);
+      }
     }
     return () => {
       setStartPage(0);
@@ -31,7 +39,7 @@ const Pagination = (props) => {
     }
     if (arr.length === 0) return;
     arr = arr.slice(startPage, endPage);
-    console.log(startPage, endPage);
+    // console.log(startPage, endPage);
     return arr.map((item, index) => (
       <li className={currentPage === item ? 'page-item page-item--active' : 'page-item'} key={item} page={item}>
         <Link to={`${pathname}?_page=${item}`} className={`page-item__link`}>

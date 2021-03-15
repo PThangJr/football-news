@@ -10,6 +10,7 @@ import Footer from '../components/footer/Footer';
 import Header from '../components/header/Header';
 import SidebarLeft from '../features/sidebar-left/SidebarLeft';
 import '../scss/main.scss';
+import NotFoundPage from './NotFoundPage';
 const HomePage = (props) => {
   const formAuth = useSelector((state) => state.displayAuth);
   const { isAuth } = formAuth;
@@ -32,9 +33,7 @@ const HomePage = (props) => {
               <Route path={`/news/bundesliga`} component={News} />
               <Route path={`/news/ligue-1`} component={News} />
               <Route path={`/detail-page/:slug`} component={NewsDetails} />
-              <Route>
-                <Redirect to="/not-found" />
-              </Route>
+              <Route component={NotFoundPage} />
             </Switch>
           </div>
         </main>
